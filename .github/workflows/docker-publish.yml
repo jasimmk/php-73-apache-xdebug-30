@@ -8,15 +8,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      IMG_NAME: jasimmk/php-73-apache-xdebug-30
+      IMG: $IMG_NAME:$(date +%s)
+      LATEST: $IMG_NAME:latest
     steps:
     - uses: actions/checkout@v2
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        IMG_NAME: jasimmk/php-73-apache-xdebug-30
-        IMG: $IMG_NAME:$(date +%s)
-        LATEST: $IMG_NAME:latest
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Build the Docker image

@@ -10,10 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMG_NAME: jasimmk/php-73-apache-xdebug-30
-      IMG: jasimmk/php-73-apache-xdebug-30:$(date +%s)
       LATEST: jasimmk/php-73-apache-xdebug-30:latest
-    steps:
+    steps:    
     - uses: actions/checkout@v2
+    - name: set env
+      run: |
+        echo ::set-env name=IMG::${{ env.IMG_NAME }}:$(date +%s)
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}

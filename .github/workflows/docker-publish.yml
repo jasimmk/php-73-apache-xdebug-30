@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMG_NAME: jasimmk/php-73-apache-xdebug-30
-      IMG: $IMG_NAME:$(date +%s)
-      LATEST: $IMG_NAME:latest
+      IMG: jasimmk/php-73-apache-xdebug-30:$(date +%s)
+      LATEST: jasimmk/php-73-apache-xdebug-30:latest
     steps:
     - uses: actions/checkout@v2
     - name: docker login

@@ -14,14 +14,16 @@ jobs:
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        IMG_NAME: jasimmk/php-73-apache-xdebug-30
+        IMG: ${IMG_NAME}:$(date +%s)
+        LATEST: ${IMG_NAME}:latest
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag jasimmk/php-73-apache-xdebug-30 && \
-        docker tag jasimmk/php-73-apache-xdebug-30 jasimmk/php-73-apache-xdebug-30:$(date +%s)
+        docker build -t ${IMG} . && \
+        docker tag ${IMG} ${LATEST}
       
     - name: Docker Push
       run: |
-        docker push jasimmk/php-73-apache-xdebug-30 && \
-        docker push jasimmk/php-73-apache-xdebug-30:$(date +%s)
+        docker push ${IMG_NAME}

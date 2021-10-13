@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMG_NAME: jasimmk/php-73-apache-xdebug-30
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       LATEST: jasimmk/php-73-apache-xdebug-30:latest
     steps:    
     - uses: actions/checkout@v2
